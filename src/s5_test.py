@@ -309,25 +309,27 @@ def get_the_skeleton_data_to_save_to_disk(dict_id2skeleton):
 
 # -- Main
 if __name__ == "__main__":
+    print("**** MAIN ****")
 
     # -- Detector, tracker, classifier
 
     skeleton_detector = SkeletonDetector(OPENPOSE_MODEL, OPENPOSE_IMG_SIZE)
-
+    print("**** SkeletonDetector ****")
     multiperson_tracker = Tracker()
-
+    print("**** Tracker ****")
     multiperson_classifier = MultiPersonClassifier(SRC_MODEL_PATH, CLASSES)
-
+    print("**** Action Classifier ****")
     # -- Image reader and displayer
     images_loader = select_images_loader(SRC_DATA_TYPE, SRC_DATA_PATH)
-    img_displayer = lib_images_io.ImageDisplayer()
+    # img_displayer = lib_images_io.ImageDisplayer()
+    print("**** Image Read ****")
+    
 
     # -- Init output
-
     # output folder
     os.makedirs(DST_FOLDER, exist_ok=True)
     os.makedirs(DST_FOLDER + DST_SKELETON_FOLDER_NAME, exist_ok=True)
-
+    print("**** make output folder ****")
     # video writer
     video_writer = lib_images_io.VideoWriter(
         DST_FOLDER + DST_VIDEO_NAME, DST_VIDEO_FPS)
@@ -367,7 +369,7 @@ if __name__ == "__main__":
                 print("prediced label is :", dict_id2label[min_id])
 
             # -- Display image, and write to video.avi
-            img_displayer.display(img_disp, wait_key_ms=1)
+            # img_displayer.display(img_disp, wait_key_ms=1)
             video_writer.write(img_disp)
 
             # -- Get skeleton data and save to file
