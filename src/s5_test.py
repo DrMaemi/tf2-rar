@@ -379,6 +379,10 @@ if __name__ == "__main__":
                 DST_FOLDER + DST_SKELETON_FOLDER_NAME +
                 SKELETON_FILENAME_FORMAT.format(ith_img),
                 skels_to_save)
+
+            cv2.imshow('tf2-rar', img_disp)
+            if cv2.waitKey(1) == 27: break
+
     finally:
         video_writer.stop()
         print("Program ends")
